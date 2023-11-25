@@ -5,17 +5,22 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.18",
 	"customizations": {
+		"codespaces": {
+			"postStartCommand": "cd src/sample-dotnet-api && dotnet watch",
+			"openFiles": [
+				"readme.md"
+			]
+		},
 		"vscode": {
 			"extensions": [
-				"GitHub.copilot-chat"
+				"GitHub.copilot",
+				"eamodio.gitlens"
 			]
 		}
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/dotnet:2": {}
-	},
-	"forwardPorts": [5063],
-    "postCreateCommand": "until curl -s http://localhost:5063 > /dev/null; do sleep 1; done && xdg-open http://localhost:5063"
+	}
 
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
